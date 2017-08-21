@@ -4,7 +4,7 @@ padding: 0;
 border: 0;
 vertical-align: baseline;
 text-decoration: none;
-outline: 0;
+/*outline: 0;*/
 }
 
 body {
@@ -30,9 +30,9 @@ table {
 }
 
 td {
-  width: 94px;
-  height: 94px;
-  /*border: 1px solid red;*/
+  width: 92px;
+  height: 92px;
+  border: 2px solid rgb(152, 207, 113);
 }
 
 #messageArea {
@@ -44,18 +44,21 @@ td {
 
 form {
   position: absolute;
-  top: 45px;
-  right: 178px;
+  top: 20px;
+  left: 170px;
   padding: 15px;
   background-color: rgb(83, 175, 19);
   border-radius: 10px 10px 10px 10px;
-  border: 2px solid red;
+  box-shadow: 0px 0px 10px 5px green;
+  border: 2px solid green;
 }
 
 form input {
   background-color: rgb(152, 207, 113);
   border-color: rgb(83, 175, 19);
-  font-size: 1em;
-  font-family:sans-serif;
-  /*color: black;*/
+  border-radius: 10px 10px 10px 10px;
+  font-size: 20px;
+  padding: 5px;
+  font-family: serif;
+  color: darkred;
 }
