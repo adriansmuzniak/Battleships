@@ -5,6 +5,7 @@ border: 0;
 vertical-align: baseline;
 text-decoration: none;
 /*outline: 0;*/
+font-family : inherit;
 }
 
 body {
@@ -53,13 +54,9 @@ form {
   border: 1px solid green;
 
 }
-#fireButton:hover, #guessInput:hover {
-  background: rgb(174, 237, 130);
-  /*background-color: rgb(215, 207, 113);*/
-}
 
 form input {
-  background: linear-gradient(to bottom, rgba(215,207,213,1) 15%, rgba(152,207,113,1) 80%, rgba(152,207,113,1) 100%);
+  background-color: rgba(315,207,213,1)15%;
   border-color: rgb(83, 175, 19);
   border-radius: 5px 5px 5px 5px;
   font-size: 20px;
@@ -69,10 +66,13 @@ form input {
 }
 
 #fireButton {
-  background: linear-gradient(to bottom, rgba(215,207,213,1) 15%, rgba(152,207,113,1) 80%, rgba(152,207,113,1) 100%);
+  background: linear-gradient(to bottom, rgba(252,252,252,1) 15%, rgba(200,200,200,1) 80%, rgba(250,250,250,1) 100%);
   border: 1px solid green;
   margin-left: 5px;
   cursor: pointer;
+}
+#fireButton:active {
+  background: linear-gradient(to bottom, rgba(200,200,200,1) 15%, rgba(252,252,252,1) 80%, rgba(250,250,250,1) 0%);
 }
 
 
