@@ -1,39 +1,24 @@
-// //Gra w okręty - początek
-//
-// // położenie okrętu
-// var randomLoc = Math.floor(Math.random() * 5);
-// var location1 = randomLoc;
-// var location2 = location1 + 1;
-// var location3 = location2 + 1;
-//
-// // próby zatopienia okrętu
-// var guess; //wskazanie do sprawdzenia
-// var guesses = 0; //liczba prób
-// var hits = 0; //trafione
-//
-// //wartość - czy okręt został zatopiony?
-// var isSunk = false;
-//
-//   while (isSunk == false) {
-//       guess = prompt("Gotów? Cel, pal! (podaj liczbę z zakresu 0-6):");
-//       if (guess < 0 || guess > 6) {
-//           alert("Proszę podać prawidłową liczbę z zakresu od 0-6!");
-//       } else {
-//         guesses = guesses + 1;
-//
-//         if (guess == location1 || guess == location2 || guess == location3) {
-//           hits = hits + 1;
-//           document.write("TRAFIONY!!");
-//           if (hits == 3) {
-//             isSunk == true;
-//             document.write("Hej, zatopiłeś mój okręt!");
-//             var stats = "Potrzebowałeś " + guesses + " ruchów, aby zatopić okręt. Twoja efektywność strzelecka wynosi: " + (3/guesses) + ".";
-//             document.write(stats);
-//           }
-//         } else if (guess == null || guess == false) {
-//           document.write("Ej, podaj jakąś liczbę")
-//         } else {
-//           document.write("PUDŁO!")
-//         }
-//       }
-//   }
+//Battleship Game
+
+var view = {
+  displayMessage: function(msg) {
+    var messageArea = document.getElementById("messageArea");
+    messageArea.innerHTML = msg;
+  },
+  displayHit: function(location) {
+    var cell = document.getElementById(location);
+    cell.setAttribute("class", "hit");
+  },
+  displayMiss: function(location) {
+    var cell = document.getElementById(location);
+    cell.setAttribute("class", "miss");
+  }
+}
+
+view.displayMiss("00");
+view.displayHit("34");
+view.displayMiss("55");
+view.displayHit("32");
+view.displayMiss("43");
+view.displayHit("26");
+view.displayMessage("Sink my ship ");
