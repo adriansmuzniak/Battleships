@@ -15,10 +15,29 @@ var view = {
   }
 }
 
-view.displayMiss("00");
-view.displayHit("34");
-view.displayMiss("55");
-view.displayHit("32");
-view.displayMiss("43");
-view.displayHit("26");
-view.displayMessage("Sink my ship ");
+
+var ship1 = [{ locations: ["10", "20", "30"], hits: ["", "", ""] }];
+var ship2 = [{ locations: ["32", "33", "34"], hits: ["", "", ""] }];
+var ship3 = [{ locations: ["63", "64", "65"], hits: ["", "", ""] }];
+
+var ships = [
+  { locations: ["10", "20", "30"], hits: ["", "", ""] },
+  { locations: ["32", "33", "34"], hits: ["", "hit", ""] },
+  { locations: ["63", "64", "65"], hits: ["hit", "", ""] },
+]
+
+var statek = ships[1];
+var locations = statek.locations;
+console.log(locations[1]);
+
+var statek2 = ships[2];
+var hits = statek2.hits;
+console.log(hits);
+if (hits[0] === "hit") {
+  console.log("bang!");
+}
+
+var statek3 = ships[0];
+var hits = statek3.hits;
+hits[2] = "hit";
+console.log(statek3.hits);
