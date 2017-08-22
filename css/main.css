@@ -38,9 +38,19 @@ td {
 
 #messageArea {
   position: absolute;
-  top: 0px;
-  left: 0px;
-  color: rgb(83, 175, 19);
+  width: 330px;
+  height: 50px;
+  top: 20px;
+  left: 515px;
+  padding-top: 15px;
+  font-size: 30px;
+  text-align: center;
+  color: white;
+  display: inline-block;
+  background: linear-gradient(to bottom, rgba(26,210,230,1) 25%, rgba(26,98,130,1) 80%, rgba(21,135,170,1) 100%);
+  border-radius: 10px 10px 10px 10px;
+  box-shadow: 0px 0px 10px 5px green;
+  border: 1px solid green;
 }
 
 form {
@@ -52,7 +62,6 @@ form {
   border-radius: 10px 10px 10px 10px;
   box-shadow: 0px 0px 10px 5px green;
   border: 1px solid green;
-
 }
 
 form input {
@@ -71,10 +80,10 @@ form input {
   margin-left: 5px;
   cursor: pointer;
 }
+
 #fireButton:active {
   background: linear-gradient(to bottom, rgba(200,200,200,1) 15%, rgba(252,252,252,1) 80%, rgba(250,250,250,1) 0%);
 }
-
 
 #guessInput {
   border: 1px solid green;
