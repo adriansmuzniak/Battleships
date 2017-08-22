@@ -47,18 +47,35 @@ form {
   top: 20px;
   left: 170px;
   padding: 15px;
-  background-color: rgb(83, 175, 19);
+  background: linear-gradient(to bottom, rgba(26,210,8,1) 15%, rgba(0,144,8,1) 80%, rgba(21,135,13,1) 100%);
   border-radius: 10px 10px 10px 10px;
   box-shadow: 0px 0px 10px 5px green;
-  border: 2px solid green;
+  border: 1px solid green;
+
+}
+#fireButton:hover, #guessInput:hover {
+  background: rgb(174, 237, 130);
+  /*background-color: rgb(215, 207, 113);*/
 }
 
 form input {
-  background-color: rgb(152, 207, 113);
+  background: linear-gradient(to bottom, rgba(215,207,213,1) 15%, rgba(152,207,113,1) 80%, rgba(152,207,113,1) 100%);
   border-color: rgb(83, 175, 19);
-  border-radius: 10px 10px 10px 10px;
+  border-radius: 5px 5px 5px 5px;
   font-size: 20px;
   padding: 5px;
   font-family: serif;
   color: darkred;
+}
+
+#fireButton {
+  background: linear-gradient(to bottom, rgba(215,207,213,1) 15%, rgba(152,207,113,1) 80%, rgba(152,207,113,1) 100%);
+  border: 1px solid green;
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+
+#guessInput {
+  border: 1px solid green;
 }
