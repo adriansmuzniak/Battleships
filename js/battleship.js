@@ -30,8 +30,8 @@ var model = {
   fire: function(guess) {
     for (var i = 0; i <this.numShips; i++) {
       var ship = this.ships[i];
-      locations = ship.locations;
-      var index = locations.indexOf(guess); //not "-1" if found
+      // locations = ship.locations;
+      var index = ship.locations.indexOf(guess); //not "-1" if found
       if (index >= 0) { //hit!
         ships.hits[index] = "hit";
         return true;
