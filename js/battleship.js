@@ -56,9 +56,18 @@ var model = {
     }
   }
 }
+// //test fire
+// model.fire("21");
+// model.fire("51");
+// model.fire("45");
+// model.fire("52");
+// model.fire("24");
 
-model.fire("21");
-model.fire("51");
-model.fire("45");
-model.fire("52");
-model.fire("24");
+//Controller
+
+var controller = {
+  guessess: 0,
+  processGuess: function(guess) {
+    //game control
+  }
+}
