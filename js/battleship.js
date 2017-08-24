@@ -37,7 +37,7 @@ var model = {
         view.displayHit(guess);
         view.displayMessage("Trafiony!")
         if (this.isSunk(ship)) {
-          view.displayMessage("Zatopiłeś mój okręt!!");
+          view.displayMessage("ZATOPIONY!!");
           this.shipSunk++;
         }
         return true;
@@ -80,12 +80,27 @@ var controller = {
 };
 
 function parseGuess(guess) {
-  var alphabet = ["A", "B", "C", "D", "E", "F", "G"]
+  var alphabet = ["A", "B", "C", "D", "E", "F", "G"];
+  var smallAlphabet = ["a", "b", "c", "d", "e", "f", "g"];
   if (guess === null || guess.length !== 2) {
     alert("Proszę podać literę i cyfrę.")
   } else {
     firstChar = guess.charAt(0);
-    var row = alphabet.indexOf(firstChar);
+    var row;
+
+    for (var i = 0; i < smallAlphabet.length; i++) {
+      if (firstChar === smallAlphabet[i]) {
+        row = smallAlphabet.indexOf(firstChar)
+      }
+    }
+
+    for (var i = 0; i <alphabet.length; i++) {
+      if (firstChar === alphabet[i]) {
+        row = alphabet.indexOf(firstChar)
+      }
+    }
+    
+    // var row = alphabet.indexOf(firstChar);
     var column = guess.charAt(1);
 
     if (isNaN(row) || isNaN(column)) {
@@ -99,16 +114,28 @@ function parseGuess(guess) {
   return null;
 }
 
-console.log(controller.processGuess("A0"));
+// console.log(controller.processGuess("A0"));
+// console.log(controller.processGuess("A6"));
+// console.log(controller.processGuess("B6"));
+// console.log(controller.processGuess("C6"));
+// console.log(controller.processGuess("C4"));
+// console.log(controller.processGuess("D4"));
+// console.log(controller.processGuess("E4"));
+// console.log(controller.processGuess("B0"));
+// console.log(controller.processGuess("B1"));
+// console.log(controller.processGuess("B2"));
 
-console.log(controller.processGuess("A6"));
-console.log(controller.processGuess("B6"));
-console.log(controller.processGuess("C6"));
+function init() {
+  var fireButton = document.getElementById("fireButton");
+  fireButton.onclick = handleFireButton;
+}
 
-console.log(controller.processGuess("C4"));
-console.log(controller.processGuess("D4"));
-console.log(controller.processGuess("E4"));
+function handleFireButton() {
+  var guessInput = document.getElementById("guessInput");
+  var guess = guessInput.value;
+  controller.processGuess(guess);
 
-console.log(controller.processGuess("B0"));
-console.log(controller.processGuess("B1"));
-console.log(controller.processGuess("B2"));
+  guessInput.value = "";
+};
+
+window.onload = init;
