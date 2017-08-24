@@ -24,7 +24,7 @@ var model = {
   numShips: 3,
   shipLength: 3,
   shipSunk: 0,
-  ships: [{ locations: ["10", "20", "30"], hits: ["", "", ""] },
+  ships: [{ locations: ["10", "11", "12"], hits: ["", "", ""] },
     { locations: ["32", "33", "34"], hits: ["", "", ""] },
     { locations: ["63", "64", "65"], hits: ["", "", ""] }],
   fire: function(guess) {
@@ -33,12 +33,12 @@ var model = {
       // locations = ship.locations;
       var index = ship.locations.indexOf(guess); //not "-1" if found
       if (index >= 0) { //hit!
-        ships.hits[index] = "hit";
+        ship.hits[index] = "hit";
         view.displayHit(guess);
         view.displayMessage("Trafiony!")
         if (this.isSunk(ship)) {
-          wiev.displayMessage("Zatopiłeś mój okręt!!")
-          shipSunk++;
+          view.displayMessage("Zatopiłeś mój okręt!!");
+          this.shipSunk++;
         }
         return true;
       }
@@ -68,31 +68,47 @@ var model = {
 var controller = {
   guessess: 0,
   processGuess: function(guess) {
-
-  },
-  parseGuess: function(guess) {
-    var alphabet = ["A", "B", "C", "D", "E", "F", "G"]
-    if (guess === null || guess.length !== 2) {
-      alert("Proszę podać literę i cyfrę.")
-    } else {
-      firstChar = guess.charAt(0);
-      var row = alphabet.indexOf(firstChar);
-      var column = guess.charAt(1);
-
-      if (isNaN(row) || isNaN(column)) {
-        alert("To nie są współrzędne!")
-      } else if (row < 0 || row >= model.boardSize || column < 0 || column >= model.boardSize ) {
-        alert("To pole jest poza planszą!");
-      } else {
-        return row + column;
+    var location = parseGuess(guess);
+    if (location) {
+      this.guessess++;
+      var hit = model.fire(location);
+      if (hit && model.shipsSunk === model.numShips) {
+        view.displayMessage("Zatopiłeś wszystkie okęty, w " + this.guessess + " próbach.")
       }
     }
-    return null;
   }
+};
+
+function parseGuess(guess) {
+  var alphabet = ["A", "B", "C", "D", "E", "F", "G"]
+  if (guess === null || guess.length !== 2) {
+    alert("Proszę podać literę i cyfrę.")
+  } else {
+    firstChar = guess.charAt(0);
+    var row = alphabet.indexOf(firstChar);
+    var column = guess.charAt(1);
+
+    if (isNaN(row) || isNaN(column)) {
+      alert("To nie są współrzędne!")
+    } else if (row < 0 || row >= model.boardSize || column < 0 || column >= model.boardSize ) {
+      alert("To pole jest poza planszą!");
+    } else {
+      return row + column;
+    }
+  }
+  return null;
 }
 
-console.log(controller.parseGuess("A0"));
-console.log(controller.parseGuess("B6"));
-console.log(controller.parseGuess("G3"));
-console.log(controller.parseGuess("H0"));
-console.log(controller.parseGuess("A7"));
+console.log(controller.processGuess("A0"));
+
+console.log(controller.processGuess("A6"));
+console.log(controller.processGuess("B6"));
+console.log(controller.processGuess("C6"));
+
+console.log(controller.processGuess("C4"));
+console.log(controller.processGuess("D4"));
+console.log(controller.processGuess("E4"));
+
+console.log(controller.processGuess("B0"));
+console.log(controller.processGuess("B1"));
+console.log(controller.processGuess("B2"));
