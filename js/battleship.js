@@ -68,6 +68,20 @@ var model = {
 var controller = {
   guessess: 0,
   processGuess: function(guess) {
-    //game control
+
+  },
+  parseGuess: function(guess) {
+    var alphabet = ["A", "B", "C", "D", "E", "F", "G"]
+    if (guess == null || guess !== 2) {
+      alert("Proszę podać literę i cyfrę.")
+    } else {
+      firstChar = guess.charAt(0);
+      var row = alphabet.indexOf(firstChar);
+      var column = guess.charAt(1);
+
+      if (isNaN(row) || isNaN(column)) {
+        alert("To nie są współrzędne!")
+      } else if (row < 0 || row >= model.boardSize || column < 0 || column >= model.boardSize )
+    }
   }
 }
