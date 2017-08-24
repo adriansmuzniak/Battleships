@@ -99,7 +99,7 @@ function parseGuess(guess) {
         row = alphabet.indexOf(firstChar)
       }
     }
-    
+
     // var row = alphabet.indexOf(firstChar);
     var column = guess.charAt(1);
 
@@ -128,6 +128,16 @@ function parseGuess(guess) {
 function init() {
   var fireButton = document.getElementById("fireButton");
   fireButton.onclick = handleFireButton;
+  var guessInput = document.getElementById("guessInput");
+  guessInput.onkeypress = handleKeypress;
+}
+
+function handleKeypress(e) {
+  var fireButton = document.getElementById('fireButton');
+  if (e.keyCode === 13) {
+    fireButton.click();
+    return false;
+  }
 }
 
 function handleFireButton() {
