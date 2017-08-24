@@ -72,7 +72,7 @@ var controller = {
   },
   parseGuess: function(guess) {
     var alphabet = ["A", "B", "C", "D", "E", "F", "G"]
-    if (guess == null || guess !== 2) {
+    if (guess === null || guess.length !== 2) {
       alert("Proszę podać literę i cyfrę.")
     } else {
       firstChar = guess.charAt(0);
@@ -81,7 +81,18 @@ var controller = {
 
       if (isNaN(row) || isNaN(column)) {
         alert("To nie są współrzędne!")
-      } else if (row < 0 || row >= model.boardSize || column < 0 || column >= model.boardSize )
+      } else if (row < 0 || row >= model.boardSize || column < 0 || column >= model.boardSize ) {
+        alert("To pole jest poza planszą!");
+      } else {
+        return row + column;
+      }
     }
+    return null;
   }
 }
+
+console.log(controller.parseGuess("A0"));
+console.log(controller.parseGuess("B6"));
+console.log(controller.parseGuess("G3"));
+console.log(controller.parseGuess("H0"));
+console.log(controller.parseGuess("A7"));
