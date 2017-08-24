@@ -24,18 +24,25 @@ var model = {
   numShips: 3,
   shipLength: 3,
   shipSunk: 0,
+
   ships: [{ locations: ["10", "11", "12"], hits: ["", "", ""] },
     { locations: ["32", "33", "34"], hits: ["", "", ""] },
-    { locations: ["63", "64", "65"], hits: ["", "", ""] }],
+    { locations: ["63", "64", "65"], hits: ["", "", ""] }
+  ],
   fire: function(guess) {
     for (var i = 0; i < this.numShips; i++) {
       var ship = this.ships[i];
       // locations = ship.locations;
       var index = ship.locations.indexOf(guess); //not "-1" if found
-      if (index >= 0) { //hit!
+
+      if (ship.hits[index] === "hit") {
+        view.displayMessage("Już wcześniej trafiłeś w to pole!");
+        return true;
+      } else if (index >= 0) { //hit!
         ship.hits[index] = "hit";
         view.displayHit(guess);
-        view.displayMessage("Trafiony!")
+        view.displayMessage("Trafiony!");
+
         if (this.isSunk(ship)) {
           view.displayMessage("ZATOPIONY!!");
           this.shipSunk++;
@@ -47,6 +54,7 @@ var model = {
     view.displayMessage("Pudło!");
     return false;
   },
+
   isSunk: function(ship) {
     for (var i = 0; i < this.shipLength; i++) {
       if (ship.hits[i] !== "hit") {
@@ -82,6 +90,7 @@ var controller = {
 function parseGuess(guess) {
   var alphabet = ["A", "B", "C", "D", "E", "F", "G"];
   var smallAlphabet = ["a", "b", "c", "d", "e", "f", "g"];
+  
   if (guess === null || guess.length !== 2) {
     alert("Proszę podać literę i cyfrę.")
   } else {
