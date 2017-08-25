@@ -29,6 +29,7 @@ var model = {
     { locations: ["32", "33", "34"], hits: ["", "", ""] },
     { locations: ["63", "64", "65"], hits: ["", "", ""] }
   ],
+
   fire: function(guess) {
     for (var i = 0; i < this.numShips; i++) {
       var ship = this.ships[i];
@@ -62,6 +63,16 @@ var model = {
       }
       return true;
     }
+  },
+
+  generateShipLocations: function() {
+    var locations;
+    for (var i = 0; i < this.numShips; i++) {
+      do {
+        locations = this.generateShip();
+      } while (this.collision(locations));
+      this.ships[i].locations = locations;
+    }
   }
 }
 // //test fire
@@ -90,7 +101,7 @@ var controller = {
 function parseGuess(guess) {
   var alphabet = ["A", "B", "C", "D", "E", "F", "G"];
   var smallAlphabet = ["a", "b", "c", "d", "e", "f", "g"];
-  
+
   if (guess === null || guess.length !== 2) {
     alert("Proszę podać literę i cyfrę.")
   } else {
