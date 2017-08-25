@@ -73,8 +73,36 @@ var model = {
       } while (this.collision(locations));
       this.ships[i].locations = locations;
     }
-  }
+  },
+
+  generateShip: function() {
+    var direction = Math.floor(Math.random() * 2);
+    var row, col;
+
+    if (direction === 1) {
+      //vertical
+    } else {
+      //horizontal
+    }
+    var newShipLocations = [];
+
+    for (var i = 0; i < this.shipLength; i++) {
+      if (direction === 1) {
+        // push to array
+      } else {
+        //push to array
+      }
+    }
+    return newShipLocations;
+  },
+
+  collision: function() {
+
+  },
+
 }
+
+
 // //test fire
 // model.fire("21");
 // model.fire("51");
