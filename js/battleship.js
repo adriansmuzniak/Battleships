@@ -81,16 +81,20 @@ var model = {
 
     if (direction === 1) {
       //vertical
+      row = Math.floor(Math.random() * this.boardSize);
+      col = Math.floor(Math.random() * (this.boardSize - this.shipLength));
     } else {
       //horizontal
+      row = Math.floor(Math.random() * (this.boardSize - this.shipLength));
+      col = Math.floor(Math.random() * this.boardSize);
     }
-    var newShipLocations = [];
 
+    var newShipLocations = [];
     for (var i = 0; i < this.shipLength; i++) {
       if (direction === 1) {
-        // push to array
+        //
       } else {
-        //push to array
+        //
       }
     }
     return newShipLocations;
