@@ -25,7 +25,8 @@ var model = {
   shipLength: 3,
   shipSunk: 0,
 
-  ships: [{ locations: [0, 0, 0], hits: ["", "", ""] },
+  ships: [
+    { locations: [0, 0, 0], hits: ["", "", ""] },
     { locations: [0, 0, 0], hits: ["", "", ""] },
     { locations: [0, 0, 0], hits: ["", "", ""] }
   ],
@@ -61,8 +62,8 @@ var model = {
       if (ship.hits[i] !== "hit") {
         return false;
       }
-      return true;
     }
+    return true;
   },
 
   generateShipLocations: function() {
@@ -73,6 +74,8 @@ var model = {
       } while (this.collision(locations));
       this.ships[i].locations = locations;
     }
+    console.log("Tablica okrętów: ");
+		console.log(this.ships);
   },
 
   generateShip: function() {
@@ -125,17 +128,18 @@ var model = {
 
 var controller = {
   guessess: 0,
+
   processGuess: function(guess) {
     var location = parseGuess(guess);
     if (location) {
       this.guessess++;
       var hit = model.fire(location);
       if (hit && model.shipsSunk === model.numShips) {
-        view.displayMessage("Zatopiłeś wszystkie okęty, w " + this.guessess + " próbach.")
+        view.displayMessage("Zatopiłeś wszystkie okęty, w " + this.guessess + " próbach.");
       }
     }
   }
-};
+}
 
 function parseGuess(guess) {
   var alphabet = ["A", "B", "C", "D", "E", "F", "G"];
@@ -184,17 +188,11 @@ function parseGuess(guess) {
 // console.log(controller.processGuess("B1"));
 // console.log(controller.processGuess("B2"));
 
-function init() {
-  var fireButton = document.getElementById("fireButton");
-  fireButton.onclick = handleFireButton;
-
-  var guessInput = document.getElementById("guessInput");
-  guessInput.onkeypress = handleKeypress;
-  model.generateShipLocations();
-}
 
 function handleKeypress(e) {
   var fireButton = document.getElementById('fireButton');
+  e = e || window.event;
+
   if (e.keyCode === 13) {
     fireButton.click();
     return false;
@@ -203,10 +201,24 @@ function handleKeypress(e) {
 
 function handleFireButton() {
   var guessInput = document.getElementById("guessInput");
-  var guess = guessInput.value;
+  var guess = guessInput.value.toUpperCase();
   controller.processGuess(guess);
 
   guessInput.value = "";
 };
 
+
+
 window.onload = init;
+
+function init() {
+  //Fire Event usage
+  var fireButton = document.getElementById("fireButton");
+  fireButton.onclick = handleFireButton;
+
+  //Enter key event
+  var guessInput = document.getElementById("guessInput");
+  guessInput.onkeypress = handleKeypress;
+  //Set up ship locations
+  model.generateShipLocations();
+}
