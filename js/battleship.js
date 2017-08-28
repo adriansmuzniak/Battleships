@@ -1,29 +1,11 @@
 //Battleship Game
 
-
-//View
-var view = {
-  displayMessage: function(msg) {
-    var messageArea = document.getElementById("messageArea");
-    messageArea.innerHTML = msg;
-  },
-  displayHit: function(location) {
-    var cell = document.getElementById(location);
-    cell.setAttribute("class", "hit");
-  },
-  displayMiss: function(location) {
-    var cell = document.getElementById(location);
-    cell.setAttribute("class", "miss");
-  }
-}
-
 //Model
-
 var model = {
   boardSize: 7,
   numShips: 3,
   shipLength: 3,
-  shipSunk: 0,
+  shipsSunk: 0,
 
   ships: [
     { locations: [0, 0, 0], hits: ["", "", ""] },
@@ -46,8 +28,8 @@ var model = {
         view.displayMessage("Trafiony!");
 
         if (this.isSunk(ship)) {
-          view.displayMessage("ZATOPIONY!!");
-          this.shipSunk++;
+          view.displayMessage("Zatopiłeś mój okręt!!");
+          this.shipsSunk++;
         }
         return true;
       }
@@ -106,7 +88,6 @@ var model = {
   collision: function(locations) {
     for (var i = 0; i < this.numShips; i++) {
       var ship = model.ships[i];
-
       for (var j = 0; j < locations.length; j++) {
         if (ship.locations.indexOf(locations[j]) >= 0) {
           return true;
@@ -114,8 +95,8 @@ var model = {
       }
     }
     return false;
-  },
-}
+  }
+};
 
 // //test fire
 // model.fire("21");
@@ -124,8 +105,23 @@ var model = {
 // model.fire("52");
 // model.fire("24");
 
-//Controller
+//View
+var view = {
+  displayMessage: function(msg) {
+    var messageArea = document.getElementById("messageArea");
+    messageArea.innerHTML = msg;
+  },
+  displayHit: function(location) {
+    var cell = document.getElementById(location);
+    cell.setAttribute("class", "hit");
+  },
+  displayMiss: function(location) {
+    var cell = document.getElementById(location);
+    cell.setAttribute("class", "miss");
+  }
+};
 
+//Controller
 var controller = {
   guessess: 0,
 
@@ -206,8 +202,6 @@ function handleFireButton() {
 
   guessInput.value = "";
 };
-
-
 
 window.onload = init;
 
