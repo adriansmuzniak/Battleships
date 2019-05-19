@@ -131,7 +131,7 @@ var controller = {
       this.guessess++;
       var hit = model.fire(location);
       if (hit && model.shipsSunk === model.numShips) {
-        view.displayMessage("Zatopiłeś wszystkie okęty, w " + this.guessess + " próbach.");
+        view.displayMessage("Zatopiłeś wszystkie okręty, w " + this.guessess + " próbach.");
       }
     }
   }
